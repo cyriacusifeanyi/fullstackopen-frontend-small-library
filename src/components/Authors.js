@@ -1,11 +1,15 @@
   
 import React from 'react'
 
-const Authors = (props) => {
-  if (!props.show) {
+const Authors = ({show, authors}) => {
+  if (!show) {
     return null
   }
-  const authors = []
+  // const authors = []
+
+  // if (result.loading)  {
+  //   return <div>loading...</div>
+  // }
 
   return (
     <div>
