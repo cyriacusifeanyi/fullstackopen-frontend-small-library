@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
+import { useMutation } from '@apollo/client'
 
+import { CREATE_BOOK } from './queries'
+import { ALL_AUTHORS, ALL_BOOKS } from './queries'
 const NewBook = (props) => {
   const [title, setTitle] = useState('')
   const [author, setAuhtor] = useState('')
-  const [published, setPublished] = useState('')
+  let [published, setPublished] = useState(0)
   const [genre, setGenre] = useState('')
   const [genres, setGenres] = useState([])
+
+  const [createBook] = useMutation(CREATE_BOOK, {
+    refetchQueries: [{ query: ALL_BOOKS }, { query: ALL_AUTHORS }]
+  })//how to send the form data with the request
 
   if (!props.show) {
     return null
@@ -13,11 +20,15 @@ const NewBook = (props) => {
 
   const submit = async (event) => {
     event.preventDefault()
-    
+    published = parseInt(published)
+    createBook({
+      variables: { title, author, published, genres }
+    })
+
     console.log('add book...')
 
     setTitle('')
-    setPublished('')
+    setPublished(0)
     setAuhtor('')
     setGenres([])
     setGenre('')
