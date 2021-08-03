@@ -11,7 +11,7 @@ const NewBook = (props) => {
 
   const [createBook] = useMutation(CREATE_BOOK, {
     refetchQueries: [{ query: ALL_BOOKS }, { query: ALL_AUTHORS }]
-  })//how to send the form data with the request
+  })
 
   if (!props.show) {
     return null

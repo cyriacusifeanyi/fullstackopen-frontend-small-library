@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import Select from 'react-select'
 
 import { ALL_AUTHORS, ALL_BOOKS, EDIT_AUTHOR } from './queries'
+
 const Authors = (props) => {
   const result = useQuery(ALL_AUTHORS)
   let [name, setName] = useState(null);
@@ -19,7 +20,6 @@ const Authors = (props) => {
     return <div>loading...</div>
   }
   const authors = result.data.allAuthors
-  // const authors = []
 
   const submit = async (event) => {
     event.preventDefault()
