@@ -10,11 +10,20 @@ const Recommend = (props) => {
   if (!props.show) {
     return null
   }
+
+
   if (result_books.loading && result_user.loading) {
     return <div>loading...</div>
   }
+
+  console.log('1:', result_books.data.length)
+  console.log('2:', result_user.data.length)
+  if(result_books.data.length === 0 || result_user.data.length === 0 ){
+    return <div>not available...</div>
+  }
   const books = result_books.data.allBooks2
-  const favoriteGenre = result_user.data.me.favoriteGenre
+  const me = result_user.data.me
+  const favoriteGenre = me.favoriteGenre
 
   return (
     <div>
